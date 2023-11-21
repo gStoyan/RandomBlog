@@ -16,6 +16,10 @@
         public string Attachment { get; set; }
         public string Picture { get; set; }
         public int UserId { get; set; }
+        public int? CreatedBy { get; set; }
+        public DateTime? Created { get; set; }
+        public DateTime? LastModified { get; set; }
+        public int? ModifiedBy { get; set; }
     }
 
     internal class CreateBlogCommandHangler : IRequestHandler<CreateBlogCommand, Result<int>>
