@@ -19,7 +19,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RandomBlog.Shared", "Random
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{8771EEBB-C05A-4932-BAFF-AF3F04C1FAFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomBlog.Infrastructure", "RandomBlog.Infrastructure\RandomBlog.Infrastructure.csproj", "{E570C429-F9D5-485A-B57B-A465669FC3A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RandomBlog.Infrastructure", "RandomBlog.Infrastructure\RandomBlog.Infrastructure.csproj", "{E570C429-F9D5-485A-B57B-A465669FC3A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{871B63BB-E2C5-432E-8A4A-F6154B49FB17}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

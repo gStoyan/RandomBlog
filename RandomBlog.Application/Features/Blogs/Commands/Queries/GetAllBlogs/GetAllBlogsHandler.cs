@@ -10,9 +10,8 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    public record GetAllBlogsQuery : IRequest<Result<List<GetAllBlogsDto>>>;
 
-    internal class GetAllBlogsQueryHandler : IRequestHandler<GetAllBlogsQuery, Result<List<GetAllBlogsDto>>>
+    internal class GetAllBlogsQueryHandler : IRequestHandler<GetAllBlogsRequest, Result<List<GetAllBlogsDto>>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -23,7 +22,7 @@
             _mapper = mapper;
         }
 
-        public async Task<Result<List<GetAllBlogsDto>>> Handle(GetAllBlogsQuery request, CancellationToken cancellationToken)
+        public async Task<Result<List<GetAllBlogsDto>>> Handle(GetAllBlogsRequest request, CancellationToken cancellationToken)
         {
             var blogs = await _unitOfWork.Repository<Blog>().Entities
                 .ProjectTo<GetAllBlogsDto>(_mapper.ConfigurationProvider)

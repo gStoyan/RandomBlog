@@ -20,7 +20,6 @@
         public static void AddDbContext(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection");
-
             services.AddDbContext<RandomBlogDbContext>(options =>
             options.UseSqlServer(connectionString,
             builder => builder.MigrationsAssembly(typeof(RandomBlogDbContext).Assembly.FullName)));

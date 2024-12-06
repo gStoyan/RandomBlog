@@ -9,22 +9,18 @@
     public class RandomBlogDbContext : DbContext
     {
         private readonly IDomainEventDispatcher _dispatcher;
-
-        public RandomBlogDbContext(DbContextOptions<RandomBlogDbContext> options, IDomainEventDispatcher dispatcher) : base(options)
+        public RandomBlogDbContext(DbContextOptions<RandomBlogDbContext> options, IDomainEventDispatcher dispatcher)
+        : base(options)
         {
             _dispatcher = dispatcher;
         }
         public DbSet<Blog> Blogs { get; set; }
 
-        protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
-        {
-            base.ConfigureConventions(configurationBuilder);
-            configurationBuilder.Properties<decimal>().HavePrecision(18, 2);
-        }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.Entity<Blog>().ToTable("Blogs");
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
