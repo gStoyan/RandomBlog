@@ -15,12 +15,21 @@
             _dispatcher = dispatcher;
         }
         public DbSet<Blog> Blogs { get; set; }
-
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.Entity<Blog>().ToTable("Blogs");
+
+            builder.Entity<Blog>()
+                .HasOne<User>(b => b.User)
+                .WithMany(u => u.Blogs)
+                .HasForeignKey(b => b.UserId);
+            builder.Entity<User>()
+                .HasMany<Blog>(u => u.Blogs)
+                .WithOne(b => b.User)
+                .HasForeignKey(b => b.UserId);
+
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
