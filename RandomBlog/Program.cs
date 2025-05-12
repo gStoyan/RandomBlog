@@ -1,5 +1,8 @@
+using Microsoft.AspNetCore.Identity;
 using RandomBlog.Application.Extensions;
+using RandomBlog.Infrastructure;
 using RandomBlog.Infrastructure.Extensions;
+using RandomBlog.WebAPI.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +13,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddInfrastructureLayer(builder.Configuration);
+builder.Services.AddIdentity<AppIdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<RandomBlogDbContext>()
+    .AddDefaultTokenProviders();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -28,7 +34,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllers();
 

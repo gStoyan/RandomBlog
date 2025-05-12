@@ -5,7 +5,7 @@
     using RandomBlog.Domain.Entities;
     using RandomBlog.Shared;
 
-    internal record DeleteUserRequest : IRequest<Result<int>>, IMapFrom<User>
+    public record DeleteUserRequest : IRequest<Result<int>>, IMapFrom<User>
     {
         public int Id { get; init; }
         public DeleteUserRequest()

@@ -3,7 +3,7 @@
     using MediatR;
     using RandomBlog.Shared;
 
-    internal class GetAllUsersRequest : IRequest<Result<List<GetAllUsersDto>>>
+    public record GetAllUsersRequest : IRequest<Result<List<GetAllUsersDto>>>
     {
     }
 }
